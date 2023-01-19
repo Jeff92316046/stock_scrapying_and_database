@@ -18,7 +18,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
 
     def buttonClicked_scrapying(self):
         stock_code = self.ui.lineEdit_1.text()
-        scrapying.scrapying(stock_code)
+        scrapying.scrapying_1(stock_code)
         data_sort.sort_data()
 
         
