@@ -2,6 +2,7 @@ from selenium import webdriver
 import time
 import get_stock_code
 import data_collecter
+import random
 
 people = []
 shares = []
@@ -61,7 +62,7 @@ def scrapying_2():
         code = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[2]/td[2]/input')
         code.clear()
         code.send_keys(gsc[k])
-        time.sleep(0.5)
+        time.sleep(0.2)
         date_list_str = "/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[1]/td[2]/select/option"
         
         for j in range(0,51) :
@@ -73,7 +74,7 @@ def scrapying_2():
             #    date = clean_str(date_option.text)
             click1 = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[4]/td/input')
             click1.click()
-            time.sleep(1)
+            time.sleep(0.4)
             for i in range(0,15):
                 temp_1 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[3]").text
                 temp_2 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[4]").text
@@ -82,8 +83,8 @@ def scrapying_2():
             #except:                       
              #   check = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr/td").text  
              #   print(check)
-        get_stock_code.del_stock_code()
-        time.sleep(5)
+        get_stock_code.del_stock_code(gsc[k])
+        time.sleep(random.randint(3,5))
 
 
 scrapying_2()
