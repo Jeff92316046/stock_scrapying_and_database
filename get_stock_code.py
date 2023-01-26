@@ -34,11 +34,36 @@ def get_stock_code_data():
 def del_stock_code(stock):
     con = sqlite3.connect('stock_code_list.db')
     cur = con.cursor()
-    cur.execute("DELETE FROM data WHERE stock = " + stock)
+    cur.execute("DELETE FROM data WHERE stock = " + str(stock))
     con.commit()
     con.close()
 
-def scrapying():
+def scrapying_1():
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+
+    driver=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+    #driver=webdriver.Chrome()
+    driver.get("https://www.tdcc.com.tw/portal/zh/smWeb/psi")
+
+    button = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[6]/td/input')
+    button.click()
+
+    
+
+    date_list_str = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody")    #"tr[1""]"
+
+    
+    stock_code = date_list_str.find_elements('xpath',"./*")
+
+    for i in stock_code:
+        print(i.find_element('xpath',"./td[1]").text + " " + str(len(i.find_element('xpath',"./td[1]").text)))
+        if len(i.find_element('xpath',"./td[1]").text) == 4:
+            insert_data(i.find_element('xpath',"./td[1]").text)
+        
+    #for i in stock_code:
+    #    print(i.find_element('xpath',"./td[1]").text)
+def scrapying_2():
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
@@ -63,9 +88,6 @@ def scrapying():
         if len(i.find_element('xpath',"./td[1]").text) == 4:
             insert_data(i.find_element('xpath',"./td[1]").text)
         
-    #for i in stock_code:
-    #    print(i.find_element('xpath',"./td[1]").text)
-
 
 
 '''

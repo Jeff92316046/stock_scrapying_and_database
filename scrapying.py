@@ -45,7 +45,7 @@ def scrapying_1():
 
 
 
-def scrapying_2():
+def scrapying_2(week):
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
@@ -56,7 +56,7 @@ def scrapying_2():
     gsc = get_stock_code.get_stock_code_data()
 
     
-    for k in range(0,len(gsc)+1):  
+    for k in range(0,len(gsc)):  
 
         print(gsc[k])
         code = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[2]/td[2]/input')
@@ -65,7 +65,7 @@ def scrapying_2():
         time.sleep(0.2)
         date_list_str = "/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[1]/td[2]/select/option"
         
-        for j in range(0,51) :
+        for j in range(0,week) :
             date_option = driver.find_element('xpath',date_list_str + "[" + str(j+1) + "]")
             date_text = date_option.text
             date_option.click()
@@ -87,7 +87,7 @@ def scrapying_2():
         time.sleep(random.randint(3,5))
 
 
-scrapying_2()
+scrapying_2(1)
 
 '''
 for i in range(0,15):
