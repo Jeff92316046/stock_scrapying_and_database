@@ -46,6 +46,7 @@ def scrapying_1():
 
 
 def scrapying_2(week):
+    print("開始下載股票資訊")
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
@@ -69,7 +70,7 @@ def scrapying_2(week):
             date_option = driver.find_element('xpath',date_list_str + "[" + str(j+1) + "]")
             date_text = date_option.text
             date_option.click()
-            time.sleep(0.5)
+            time.sleep(0.3)
             #if j == 0:
             #    date = clean_str(date_option.text)
             click1 = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[4]/td/input')
@@ -84,10 +85,12 @@ def scrapying_2(week):
              #   check = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr/td").text  
              #   print(check)
         get_stock_code.del_stock_code(gsc[k])
-        time.sleep(random.randint(3,5))
+        time.sleep(random.randint(1,3))
+    print("股票資訊下載完畢")
+    print("可以執行其他程序")
+    
 
 
-scrapying_2(1)
 
 '''
 for i in range(0,15):

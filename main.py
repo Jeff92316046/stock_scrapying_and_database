@@ -5,4 +5,4 @@ if __name__ == '__main__':
     app = controller.QtWidgets.QApplication(sys.argv)
     window = controller.MainWindow_controller()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())   

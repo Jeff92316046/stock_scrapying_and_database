@@ -41,6 +41,16 @@ class Ui_MainWindow(object):
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(130, 100, 131, 31))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_4.setGeometry(QtCore.QRect(510, 120, 113, 20))
+        self.lineEdit_4.setText("")
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(400, 120, 81, 21))
+        self.label_4.setObjectName("label_4")
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setGeometry(QtCore.QRect(450, 160, 131, 31))
+        self.pushButton_3.setObjectName("pushButton_3")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 18))
@@ -61,6 +71,8 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "範圍上限"))
         self.label_3.setText(_translate("MainWindow", "範圍下限"))
         self.pushButton_2.setText(_translate("MainWindow", "蒐集資料"))
+        self.label_4.setText(_translate("MainWindow", "股票號碼"))
+        self.pushButton_3.setText(_translate("MainWindow", "下載資料"))
 
 
 if __name__ == "__main__":

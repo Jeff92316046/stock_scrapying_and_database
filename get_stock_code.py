@@ -38,7 +38,16 @@ def del_stock_code(stock):
     con.commit()
     con.close()
 
+def del_all_stock_code():
+    con = sqlite3.connect('stock_code_list.db')
+    cur = con.cursor()
+    cur.execute("DELETE FROM data")
+    con.commit()
+    con.close()
+
 def scrapying_1():
+    print("開始下載股票代碼清單")
+    del_all_stock_code()
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
@@ -64,6 +73,7 @@ def scrapying_1():
     #for i in stock_code:
     #    print(i.find_element('xpath',"./td[1]").text)
 def scrapying_2():
+    
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
@@ -88,7 +98,7 @@ def scrapying_2():
         if len(i.find_element('xpath',"./td[1]").text) == 4:
             insert_data(i.find_element('xpath',"./td[1]").text)
         
-
+    print("股票代碼清單下載完畢")
 
 '''
 for i in stock_code:
