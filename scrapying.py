@@ -50,46 +50,51 @@ def scrapying_2(week):
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
-    driver=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+    driver=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver.exe')
     #driver=webdriver.Chrome()
     driver.get("https://www.tdcc.com.tw/portal/zh/smWeb/qryStock")
-
+    #get_stock_code.scrapying_1()
+    #get_stock_code.scrapying_2()
     gsc = get_stock_code.get_stock_code_data()
 
     
     for k in range(0,len(gsc)):  
-
-        print(gsc[k])
-        code = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[2]/td[2]/input')
-        code.clear()
-        code.send_keys(gsc[k])
-        time.sleep(0.2)
-        date_list_str = "/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[1]/td[2]/select/option"
-        
-        for j in range(0,week) :
-            date_option = driver.find_element('xpath',date_list_str + "[" + str(j+1) + "]")
-            date_text = date_option.text
-            date_option.click()
-            time.sleep(0.3)
-            #if j == 0:
-            #    date = clean_str(date_option.text)
-            click1 = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[4]/td/input')
-            click1.click()
-            time.sleep(0.4)
-            for i in range(0,15):
-                temp_1 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[3]").text
-                temp_2 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[4]").text
-                data_collecter.insert_data(str(gsc[k]),date_text,i+1,temp_1,temp_2)
-            print ("S"+str(j+1))
-            #except:                       
-             #   check = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr/td").text  
-             #   print(check)
-        get_stock_code.del_stock_code(gsc[k])
-        time.sleep(random.randint(1,3))
+        try :
+            print(gsc[k])
+            code = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[2]/td[2]/input')
+            code.clear()
+            code.send_keys(gsc[k])
+            time.sleep(0.2)
+            date_list_str = "/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[1]/td[2]/select/option"
+            
+            for j in range(0,week) :
+                try:
+                    date_option = driver.find_element('xpath',date_list_str + "[" + str(j+1) + "]")
+                    date_text = date_option.text
+                    date_option.click()
+                    time.sleep(0.3)
+                    #if j == 0:
+                    #    date = clean_str(date_option.text)
+                    click1 = driver.find_element('xpath','/html/body/div[1]/div[1]/div/main/div[4]/form/table/tbody/tr[4]/td/input')
+                    click1.click()
+                    time.sleep(0.4)
+                    for i in range(0,15):
+                        temp_1 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[3]").text
+                        temp_2 = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr["+str(i+1)+"]/td[4]").text
+                        data_collecter.insert_data(str(gsc[k]),date_text,i+1,temp_1,temp_2)
+                    print ("S"+str(j+1))
+                except:
+                    pass
+                #except:                       
+                #   check = driver.find_element('xpath',"/html/body/div[1]/div[1]/div/main/div[6]/div/table/tbody/tr/td").text  
+                #   print(check)
+            get_stock_code.del_stock_code(gsc[k])
+            time.sleep(random.randint(1,3))
+        except:
+            print("?")
     print("股票資訊下載完畢")
     print("可以執行其他程序")
-    
-
+scrapying_2(34)
 
 
 '''

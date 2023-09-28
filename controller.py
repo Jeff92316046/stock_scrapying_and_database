@@ -30,7 +30,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         week = self.ui.lineEdit_4.text()
         get_stock_code.scrapying_1()
         get_stock_code.scrapying_2()
-        scrapying.scrapying_2(week)
+        scrapying.scrapying_2(int(week))
 
 
     def buttonClicked_draw(self):

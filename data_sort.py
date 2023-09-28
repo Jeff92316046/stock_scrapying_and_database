@@ -40,11 +40,13 @@ def find_data_share(stock):
     for i in cur.fetchall():
         data[k%15].append(clean_str(i[4])) 
         k += 1
-      
+    for i in data:
+        print(len(i))
     data[15] = copy.deepcopy(data[0])
     
     for i in range(1,len(data)-1):
         for j in range(len(data[i])):
+            #print(i)
             data[15][j] += data[i][j]
     
     for i in range(len(data[0])):
