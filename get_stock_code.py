@@ -51,7 +51,7 @@ def scrapying_1():
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
 
-    driver=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+    driver=webdriver.Chrome(options=options)
     #driver=webdriver.Chrome()
     driver.get("https://www.tdcc.com.tw/portal/zh/smWeb/psi")
 
@@ -77,7 +77,7 @@ def scrapying_2():
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     
-    driver=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+    driver=webdriver.Chrome(options=options)
     #driver=webdriver.Chrome()
     try:
         driver.get("https://www.tdcc.com.tw/portal/zh/smWeb/psi")
